@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>4624: Healing From Here</title>
+<meta name="description" content="4624: Healing From Here — a podcast on childhood healing and resilience, hosted by Ed Averette and L. Michelle Salvant." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">4624<span>:</span> Healing From Here</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap inner">
+    <div class="rule"></div>
+    <p class="quote">"Healing isn't a straight line back to who you were. It's a path forward to who you're becoming."</p>
+    <div class="lockup">
+      <p class="kicker">Season 3 &middot; New episodes weekly</p>
+      <h1>Childhood healing, told out loud.</h1>
+      <p class="lede">Hosted by Ed Averette and L. Michelle Salvant, 4624: Healing From Here sits down with guests who've turned childhood wounds into the work of their adult lives — therapists, survivors, and the people who show up for both.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="episodes.html">Watch the latest episode</a>
+        <a class="btn btn-outline" href="#newsletter">Join the newsletter</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-border">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rule" style="height:auto;"></div>
+      <div>
+        <h2>Recent episodes</h2>
+        <p class="lede">Every conversation, start to finish, on the platform you already watch or listen on.</p>
+      </div>
+    </div>
+    <div class="grid" id="home-episodes"></div>
+  </div>
+</section>
+
+<section id="newsletter" class="section-border">
+  <div class="wrap">
+    <div class="newsletter">
+      <div class="copy">
+        <p class="kicker" style="margin-bottom:8px;">Healing From Here Newsletter</p>
+        <h2 style="margin-bottom:14px;">Get the debrief after every episode.</h2>
+        <p class="lede">One email per episode — the parts that didn't make the edit, and the questions worth sitting with.</p>
+      </div>
+      <div class="embed">
+        <!--
+          SUBSTACK SETUP: replace YOURSUBDOMAIN below with your actual
+          Substack address (e.g. healingfromhere.substack.com).
+        -->
+        <iframe src="https://YOURSUBDOMAIN.substack.com/embed" frameborder="0" scrolling="no" title="Subscribe to the Healing From Here Newsletter"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="rule" style="height:auto;"></div>
+      <div>
+        <h2>From the blog</h2>
+        <p class="lede">Longer reflections on the themes each episode opens up.</p>
+      </div>
+    </div>
+    <div class="grid" id="home-posts"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="fine">&copy; <span id="year"></span> 4624: Healing From Here. Produced by PodLife Media.</span>
+    <div class="platforms">
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
+      <a href="#">Apple Podcasts</a>
+      <a href="#">Podbean</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/episodes-data.js"></script>
+<script src="js/blog-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  renderEpisodes("home-episodes", EPISODES.slice(0, 3));
+  renderPosts("home-posts", POSTS.slice(0, 3));
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

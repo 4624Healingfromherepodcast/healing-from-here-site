@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — 4624: Healing From Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">4624<span>:</span> Healing From Here</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap inner">
+    <div class="rule"></div>
+    <div class="lockup">
+      <p class="kicker">Get in touch</p>
+      <h1>Be a guest, or just say hello.</h1>
+      <p class="lede">Guest pitches, sponsorship questions, and listener notes all land in the same inbox.</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <!--
+      This form opens the visitor's email client with the fields
+      filled in — no server or form service needed on GoDaddy shared
+      hosting. Replace YOUREMAIL@domain.com with your real address.
+      If you'd rather capture submissions directly, swap this for a
+      form endpoint from a service like Formspree.
+    -->
+    <form action="mailto:YOUREMAIL@domain.com" method="post" enctype="text/plain">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-gold">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="fine">&copy; <span id="year"></span> 4624: Healing From Here. Produced by PodLife Media.</span>
+    <div class="platforms">
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
+      <a href="#">Apple Podcasts</a>
+      <a href="#">Podbean</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
