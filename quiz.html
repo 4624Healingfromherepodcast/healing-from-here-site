@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where Are You in Your Healing? — 4624: Healing From Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EDE8DA;
+    --ink:#1C1712;
+    --terracotta:#B35D34;
+    --gold:#D4AF37;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Lora', Georgia, serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 16px;
+    line-height:1.55;
+  }
+  button{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+  .stage{
+    width:100%;
+    max-width:600px;
+  }
+  .opening{
+    text-align:left;
+  }
+  .opening .kicker{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--terracotta);
+    margin:0 0 14px;
+  }
+  h1{
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 6vw, 44px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    color:var(--ink);
+  }
+  .opening p{
+    font-size:17px;
+    max-width:46ch;
+    color:#3a342c;
+    margin:0 0 28px;
+  }
+  .start-btn, .continue-btn{
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    background:var(--terracotta);
+    color:var(--white);
+    border:none;
+    padding:16px 30px;
+    border-radius:2px;
+    cursor:pointer;
+    letter-spacing:0.01em;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .start-btn:hover, .continue-btn:hover{ background:#9a4d29; }
+  }
+  .start-btn:active, .continue-btn:active{ background:#9a4d29; }
+  .start-btn:focus-visible, button:focus-visible, a:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:2px;
+  }
+  .fine{
+    margin-top:26px;
+    font-size:13.5px;
+    color:#6b6255;
+    max-width:44ch;
+  }
+
+  .card{
+    background:var(--white);
+    padding:40px 34px;
+    border-left:4px solid var(--terracotta);
+  }
+  .progress-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:22px;
+  }
+  .progress-label{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:14px;
+    color:#6b6255;
+  }
+  .progress-track{
+    background:#e4ddcd;
+    height:3px;
+    width:100%;
+    margin-bottom:30px;
+  }
+  .progress-fill{
+    background:var(--gold);
+    height:3px;
+    transition:width 0.35s ease;
+  }
+  .question{
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:23px;
+    line-height:1.3;
+    margin:0 0 26px;
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .option{
+    text-align:left;
+    background:var(--cream);
+    border:1px solid #e4ddcd;
+    border-radius:2px;
+    padding:15px 18px;
+    font-family:'Lora', serif;
+    font-size:16px;
+    color:var(--ink);
+    cursor:pointer;
+    transition:border-color 0.15s ease, background 0.15s ease;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .option:hover{
+      border-color:var(--terracotta);
+      background:#fff;
+    }
+  }
+  .option.selected{
+    background:var(--white);
+    border-color:var(--terracotta);
+    border-width:2px;
+    padding:14px 17px;
+  }
+  .option:disabled{
+    cursor:default;
+  }
+  .option:disabled:not(.selected){
+    opacity:0.45;
+  }
+
+  .explain-box{
+    margin-top:24px;
+    padding:20px 22px;
+    background:var(--cream);
+    border-left:4px solid var(--gold);
+  }
+  .explain-box p{
+    margin:0;
+    font-size:15.5px;
+    color:#3a342c;
+    font-style:italic;
+  }
+
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:30px;
+  }
+  .back-link{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:14px;
+    color:#6b6255;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:6px 0;
+  }
+  .back-link:disabled{ visibility:hidden; }
+
+  .result-eyebrow{
+    font-family:'Lora', serif;
+    font-style:italic;
+    color:var(--terracotta);
+    font-size:16px;
+    margin:0 0 8px;
+  }
+  .result-title{
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(26px,5.5vw,36px);
+    margin:0 0 18px;
+    line-height:1.15;
+  }
+  .result-body p{
+    font-size:16.5px;
+    color:#3a342c;
+    margin:0 0 16px;
+  }
+  .rec-box{
+    margin-top:26px;
+    padding:22px 24px;
+    background:var(--cream);
+    border-left:4px solid var(--gold);
+  }
+  .rec-box .rec-label{
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:var(--terracotta);
+    margin:0 0 10px;
+  }
+  .rec-box a{
+    font-family:'Lora', serif;
+    font-size:16px;
+    color:var(--ink);
+    display:block;
+    margin-bottom:6px;
+    text-decoration:none;
+    border-bottom:1px solid var(--terracotta);
+    padding-bottom:1px;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .rec-box a:hover{ color:var(--terracotta); }
+  }
+
+  .retake{
+    margin-top:28px;
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:14px;
+    color:#6b6255;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    text-decoration:underline;
+  }
+
+  .hidden{ display:none !important; }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress-fill{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- OPENING -->
+  <section id="screen-opening" class="opening">
+    <p class="kicker">4624: Healing From Here</p>
+    <h1>Where are you in your healing?</h1>
+    <p>Twelve short questions. No wrong answers, no diagnosis — just a mirror, with a reflection after each one. At the end, we'll point you to the episode that speaks closest to where you are right now.</p>
+    <button class="start-btn" id="start-btn">Begin</button>
+    <p class="fine">This reflects on patterns, not clinical symptoms, and isn't a substitute for therapy or professional care. If you're in crisis, please reach out to a licensed provider or a crisis line in your area.</p>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="screen-quiz" class="card hidden">
+    <div class="progress-row">
+      <span class="progress-label" id="progress-label">Question 1 of 12</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:8.3%"></div></div>
+    <p class="question" id="question-text"></p>
+    <div class="options" id="options-container"></div>
+    <div id="explain-container"></div>
+    <div class="nav-row">
+      <button class="back-link" id="back-btn">← Back</button>
+      <button class="continue-btn hidden" id="continue-btn">Continue</button>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="screen-result" class="card hidden">
+    <p class="result-eyebrow" id="result-eyebrow"></p>
+    <p class="result-title" id="result-title"></p>
+    <div class="result-body" id="result-body"></div>
+    <div class="rec-box">
+      <p class="rec-label">An episode for where you are</p>
+      <div id="result-episodes"></div>
+    </div>
+    <button class="retake" id="retake-btn">Take it again</button>
+  </section>
+
+</div>
+
+<script>
+// Each option maps to one of four leanings: R (Rebuilder), Q (Quiet Healer), T (Truth-Teller), A (Anchor)
+const questions = [
+  {
+    q: "When something from your past comes up in conversation, you usually…",
+    options: [
+      { text: "Talk it through, out loud, until it makes sense", type: "T",
+        explain: "Saying it out loud, even messily, is how you actually process — that's not oversharing, that's how truth-tellers work through things." },
+      { text: "Change the subject before it goes too deep", type: "Q",
+        explain: "Redirecting isn't the same as denying. Sometimes protecting your pace is exactly the right call." },
+      { text: "Name it plainly and explain what you've learned from it", type: "R",
+        explain: "You've already done the work of turning that memory into a lesson — that's a sign of real distance traveled." },
+      { text: "Listen more than you speak, and ask how the other person is doing", type: "A",
+        explain: "Turning the focus outward is comforting and familiar to you. Notice how rarely the question comes back to you." }
+    ]
+  },
+  {
+    q: "The word 'healing' feels, to you, most like…",
+    options: [
+      { text: "A daily practice you're actively building", type: "R",
+        explain: "You've stopped waiting for a single breakthrough and started stacking small, repeatable choices — that adds up." },
+      { text: "A door you're still working up the courage to open", type: "Q",
+        explain: "There's no deadline on that door. Readiness isn't something you can rush without cost." },
+      { text: "Something you do out loud, so it stops being a secret", type: "T",
+        explain: "For you, healing and silence can't coexist. Speaking it is the healing." },
+      { text: "Something you're better at giving than receiving", type: "A",
+        explain: "You know exactly what healing looks like — for everyone but yourself. That imbalance is worth naming." }
+    ]
+  },
+  {
+    q: "A friend asks you directly, 'Are you okay?' You…",
+    options: [
+      { text: "Give the honest answer, even if it's complicated", type: "T",
+        explain: "You've made peace with the fact that 'I'm okay' can come with an asterisk, and you say the asterisk out loud." },
+      { text: "Say you're fine and mean it, mostly", type: "R",
+        explain: "Your 'fine' isn't a deflection anymore — it's closer to true than it used to be." },
+      { text: "Deflect with a joke or a quick 'yeah, just tired'", type: "Q",
+        explain: "Humor and quick answers can be a soft landing when you're not ready to say more. That's okay." },
+      { text: "Turn it back around and ask about them instead", type: "A",
+        explain: "The question bounces right off you and onto someone else. It's worth asking who checks in on you." }
+    ]
+  },
+  {
+    q: "Family gatherings tend to leave you feeling…",
+    options: [
+      { text: "Steadier — you've done the work to be at peace in that room", type: "R",
+        explain: "Being in the room without it undoing you is its own kind of milestone." },
+      { text: "Watchful, like you're waiting for an old pattern to repeat", type: "Q",
+        explain: "Vigilance made sense once. It's worth checking whether it's still needed in this room, today." },
+      { text: "Full of things you wish you'd said out loud", type: "T",
+        explain: "That unsaid pile is heavy. You already know what you want to say — the question is when." },
+      { text: "Responsible for keeping everyone else okay", type: "A",
+        explain: "You clock the room's temperature before you clock your own. That's a habit, not a requirement." }
+    ]
+  },
+  {
+    q: "When you think about the person you were as a child, you feel…",
+    options: [
+      { text: "Protective — you'd fight for that kid now", type: "R",
+        explain: "That fierce protectiveness is what it looks like when compassion for your past self finally lands." },
+      { text: "Tender, but you don't linger there long", type: "Q",
+        explain: "A short visit is still a visit. You don't have to stay to have felt it." },
+      { text: "Ready to finally say what happened to them, plainly", type: "T",
+        explain: "Naming it plainly, without softening it for anyone else's comfort, is often the hardest and most freeing sentence to say." },
+      { text: "A quiet responsibility to make sure it doesn't happen to someone else", type: "A",
+        explain: "You've turned your own history into protection for others. Just make sure you're on that list too." }
+    ]
+  },
+  {
+    q: "Your faith or sense of meaning, these days, is…",
+    options: [
+      { text: "Something you're actively rebuilding on your own terms", type: "R",
+        explain: "Rebuilding it your way, instead of the way it was handed to you, is a deliberate and grown act." },
+      { text: "Complicated, and you're still sitting with the questions", type: "Q",
+        explain: "Sitting with unanswered questions, instead of forcing an answer, takes its own kind of patience." },
+      { text: "Something you talk about honestly now, contradictions included", type: "T",
+        explain: "Letting the contradictions stay visible, instead of smoothing them over, is honest in a way a lot of people avoid." },
+      { text: "The thing you lean on so you can hold space for others", type: "A",
+        explain: "You've made your faith a resource for everyone around you. It can hold you too, not just what you're carrying for others." }
+    ]
+  },
+  {
+    q: "If someone offered to help carry something heavy, you'd probably…",
+    options: [
+      { text: "Accept it — you've learned that's part of healing too", type: "R",
+        explain: "Accepting help without guilt is a skill, and you've clearly been practicing it." },
+      { text: "Politely decline, out of habit more than need", type: "Q",
+        explain: "The reflex to decline often outlives the reason for it. It's worth noticing when it fires." },
+      { text: "Accept, and tell them exactly what's heavy and why", type: "T",
+        explain: "Naming the weight out loud, specifically, is what lets someone actually help you carry it." },
+      { text: "Say you're fine, then go help carry something of theirs", type: "A",
+        explain: "You redirected the help toward them without even noticing. That's the pattern worth watching." }
+    ]
+  },
+  {
+    q: "Right now, the truest sentence about your healing is…",
+    options: [
+      { text: "\"I'm further along than I was, and I can feel it.\"", type: "R",
+        explain: "Being able to feel your own progress, not just hope for it, is a real marker." },
+      { text: "\"I know it's there. I'm not ready to look yet.\"", type: "Q",
+        explain: "Knowing it's there is already more awareness than a lot of people ever reach. Timing is still yours to set." },
+      { text: "\"I'm done carrying this quietly.\"", type: "T",
+        explain: "That sentence is a decision, not just a feeling — and decisions like that tend to move things." },
+      { text: "\"I give this to everyone else before I give it to myself.\"", type: "A",
+        explain: "That's an honest, hard sentence to land on. Noticing it is the first step to changing the order." }
+    ]
+  },
+  {
+    q: "When you make a mistake, the voice in your head sounds…",
+    options: [
+      { text: "Firm but fair — you correct course without spiraling", type: "R",
+        explain: "That's a rebuilt inner voice. The old, harsher one doesn't run the show anymore." },
+      { text: "Quiet — you'd rather not examine it too closely", type: "Q",
+        explain: "Looking away from a mistake can be self-protection, not avoidance, especially if the old voice used to be brutal." },
+      { text: "Loud, and it wants to talk it out with someone else", type: "T",
+        explain: "Bringing the mistake into the open, instead of replaying it alone, is how you defuse it." },
+      { text: "Harder on you than it would ever be on someone else", type: "A",
+        explain: "You extend grace to everyone but yourself first. That double standard is worth questioning." }
+    ]
+  },
+  {
+    q: "Rest, for you, usually feels like…",
+    options: [
+      { text: "Something you've learned to take without earning it first", type: "R",
+        explain: "Unearning the idea that rest has to be justified is a quiet but major shift." },
+      { text: "Hard to access — your mind doesn't fully switch off", type: "Q",
+        explain: "A mind that won't switch off is often still on guard. That's exhausting, and it makes sense given what it's protected against." },
+      { text: "Easier since you started being honest about needing it", type: "T",
+        explain: "Saying 'I need rest' out loud, instead of just disappearing to get it, changes how sustainable it is." },
+      { text: "The thing you give everyone else permission to have first", type: "A",
+        explain: "You'll defend someone else's nap before you'll defend your own. Your turn counts too." }
+    ]
+  },
+  {
+    q: "When someone apologizes to you, you…",
+    options: [
+      { text: "Can accept it without needing to over-explain your hurt", type: "R",
+        explain: "That kind of clean acceptance usually means you've already done the harder work internally." },
+      { text: "Feel it land somewhere you're not ready to open yet", type: "Q",
+        explain: "An apology can reopen something before you're ready for it. That reaction is information, not weakness." },
+      { text: "Want them to hear exactly how it affected you first", type: "T",
+        explain: "Needing the full, honest account before you can move forward is a form of self-respect, not stubbornness." },
+      { text: "Rush to reassure them it's okay, even if it's not fully", type: "A",
+        explain: "Managing their comfort before your own truth is a reflex worth catching next time it happens." }
+    ]
+  },
+  {
+    q: "Looking five years ahead, you feel…",
+    options: [
+      { text: "Hopeful, and you can picture specific things getting better", type: "R",
+        explain: "Being able to picture specifics, not just 'better' in the abstract, is what forward motion looks like." },
+      { text: "Uncertain, but curious rather than afraid", type: "Q",
+        explain: "Curiosity instead of dread is progress, even without a clear picture yet." },
+      { text: "Motivated to keep telling the truth about how you got here", type: "T",
+        explain: "You're already thinking about your story as something worth telling forward, not just surviving." },
+      { text: "Focused on who you'll be helping by then", type: "A",
+        explain: "Your future is full of other people. Make sure there's room in it for you, specifically." }
+    ]
+  }
+];
+
+const results = {
+  R: {
+    eyebrow: "Your reflection",
+    title: "The Rebuilder",
+    body: [
+      "You're not new to this work. Somewhere along the way you stopped waiting to feel ready and started building new patterns on purpose — a boundary here, an honest conversation there.",
+      "That doesn't mean the old ground never shifts under you. It means you've got a practice for standing back up when it does."
+    ],
+    episodes: [
+      { title: "Ep. 14 — Are We Ever Truly Healed", url: "episodes.html#ep14" },
+      { title: "Ep. 12 — The Man Who Became My Father", url: "episodes.html#ep12" }
+    ]
+  },
+  Q: {
+    eyebrow: "Your reflection",
+    title: "The Quiet Healer",
+    body: [
+      "You feel more than you say, and that's not the same as being stuck. Some things take longer to find words for — that's not avoidance, it's pacing.",
+      "There's no prize for opening the door before you're ready. But when you do peek behind it, you don't have to do it alone."
+    ],
+    episodes: [
+      { title: "Ep. 9 — Love and Trauma", url: "episodes.html#ep9" },
+      { title: "Ep. 8 — The Shreveport Episode", url: "episodes.html#ep8" }
+    ]
+  },
+  T: {
+    eyebrow: "Your reflection",
+    title: "The Truth-Teller",
+    body: [
+      "You've reached the point where silence costs more than honesty does. Saying it out loud — plainly, without the softened version — has become part of how you heal.",
+      "That's not oversharing. That's what it looks like to stop carrying something in secret."
+    ],
+    episodes: [
+      { title: "Ep. 10 — The Cost of Telling the Truth", url: "episodes.html#ep10" },
+      { title: "Ep. 11 — Groomed for God", url: "episodes.html#ep11" }
+    ]
+  },
+  A: {
+    eyebrow: "Your reflection",
+    title: "The Anchor",
+    body: [
+      "You've become the steady one — the person others call when things fall apart. That's a gift, and it's also a habit worth questioning: you deserve the same steadiness you give away.",
+      "Healing, for you, might start with letting someone else hold the door for a change."
+    ],
+    episodes: [
+      { title: "Ep. 13 — Keeping Families Together", url: "episodes.html#ep13" },
+      { title: "Ep. 12 — The Man Who Became My Father", url: "episodes.html#ep12" }
+    ]
+  }
+};
+
+let current = 0;
+let answers = [];
+
+const screenOpening = document.getElementById('screen-opening');
+const screenQuiz = document.getElementById('screen-quiz');
+const screenResult = document.getElementById('screen-result');
+const startBtn = document.getElementById('start-btn');
+const backBtn = document.getElementById('back-btn');
+const continueBtn = document.getElementById('continue-btn');
+const retakeBtn = document.getElementById('retake-btn');
+
+startBtn.addEventListener('click', () => {
+  screenOpening.classList.add('hidden');
+  screenQuiz.classList.remove('hidden');
+  renderQuestion();
+});
+
+retakeBtn.addEventListener('click', () => {
+  current = 0;
+  answers = [];
+  screenResult.classList.add('hidden');
+  screenQuiz.classList.remove('hidden');
+  renderQuestion();
+});
+
+backBtn.addEventListener('click', () => {
+  if (current > 0){
+    current--;
+    answers.pop();
+    renderQuestion();
+  }
+});
+
+continueBtn.addEventListener('click', () => {
+  if (current < questions.length - 1){
+    current++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function renderQuestion(){
+  const q = questions[current];
+  document.getElementById('progress-label').textContent = `Question ${current+1} of ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${((current+1)/questions.length)*100}%`;
+  document.getElementById('question-text').textContent = q.q;
+  backBtn.disabled = current === 0;
+  continueBtn.classList.add('hidden');
+  document.getElementById('explain-container').innerHTML = '';
+
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt.text;
+    btn.addEventListener('click', () => selectAnswer(idx));
+    container.appendChild(btn);
+  });
+}
+
+function selectAnswer(idx){
+  const q = questions[current];
+  answers[current] = q.options[idx].type;
+
+  // lock in the choice visually, disable all options, blur to drop the stuck focus/hover ring
+  const optionButtons = document.querySelectorAll('#options-container .option');
+  optionButtons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === idx) btn.classList.add('selected');
+  });
+  if (document.activeElement) document.activeElement.blur();
+
+  const explainContainer = document.getElementById('explain-container');
+  explainContainer.innerHTML = `<div class="explain-box"><p>${q.options[idx].explain}</p></div>`;
+
+  continueBtn.textContent = current < questions.length - 1 ? 'Continue' : 'See your reflection';
+  continueBtn.classList.remove('hidden');
+}
+
+function showResult(){
+  const tally = { R:0, Q:0, T:0, A:0 };
+  answers.forEach(a => tally[a]++);
+  let winner = 'R';
+  let max = -1;
+  Object.keys(tally).forEach(k => {
+    if (tally[k] > max){ max = tally[k]; winner = k; }
+  });
+
+  const r = results[winner];
+  document.getElementById('result-eyebrow').textContent = r.eyebrow;
+  document.getElementById('result-title').textContent = r.title;
+  document.getElementById('result-body').innerHTML = r.body.map(p => `<p>${p}</p>`).join('');
+  document.getElementById('result-episodes').innerHTML = r.episodes.map(
+    e => `<a href="${e.url}">${e.title}</a>`
+  ).join('');
+
+  screenQuiz.classList.add('hidden');
+  screenResult.classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
