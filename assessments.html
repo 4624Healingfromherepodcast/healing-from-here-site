@@ -1,101 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Self-Assessments — 4624: Healing From Here</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quizzes — 4624: Healing From Here</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Allura&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
 <style>
-  :root{
-    --cream:#EDE8DA;
-    --ink:#1C1712;
-    --terracotta:#B35D34;
-    --gold:#D4AF37;
-    --white:#FFFFFF;
+  .assess-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px;
+    margin-top:12px;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Lora', Georgia, serif;
-    min-height:100vh;
-    padding:56px 20px;
-    line-height:1.55;
-  }
-  .stage{ max-width:720px; margin:0 auto; }
-  .kicker{ font-family:'Lora', serif; font-style:italic; font-size:17px; color:var(--terracotta); margin:0 0 14px; }
-  h1{
-    font-family:'Montserrat', sans-serif;
-    font-weight:800;
-    font-size:clamp(30px, 6vw, 44px);
-    line-height:1.12;
-    letter-spacing:-0.01em;
-    margin:0 0 20px;
-  }
-  .intro{ font-size:17px; max-width:52ch; color:#3a342c; margin:0 0 44px; }
-
-  .cards{ display:flex; flex-direction:column; gap:18px; }
-  .card{
+  .assess-card{
     display:block;
-    background:var(--white);
+    background:rgba(255,255,255,0.04);
     border-left:4px solid var(--terracotta);
     padding:28px 30px;
     text-decoration:none;
-    color:var(--ink);
-    transition:border-color 0.15s ease;
+    transition:border-color 0.15s ease, background 0.15s ease;
   }
-  @media (hover:hover) and (pointer:fine){
-    .card:hover{ border-left-color:var(--gold); }
+  .assess-card:hover{
+    border-left-color:var(--gold-bright, var(--gold));
+    background:rgba(255,255,255,0.07);
   }
-  .card:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
-  .card-eyebrow{
+  .assess-card .eyebrow{
     font-family:'Montserrat', sans-serif;
     font-weight:700;
     font-size:12.5px;
     letter-spacing:0.03em;
-    color:var(--terracotta);
+    text-transform:uppercase;
+    color:var(--gold-bright, var(--gold));
     margin:0 0 10px;
   }
-  .card-title{
-    font-family:'Montserrat', sans-serif;
+  .assess-card .title{
+    font-family:'Playfair Display', serif;
     font-weight:800;
     font-size:24px;
     margin:0 0 12px;
     line-height:1.25;
+    color:var(--cream);
   }
-  .card-desc{ font-size:15.5px; color:#3a342c; margin:0; max-width:50ch; }
-
-  .more-note{
-    margin-top:44px;
+  .assess-card .desc{
+    font-size:15.5px;
+    color:var(--cream);
+    opacity:0.85;
+    margin:0;
+    max-width:50ch;
+  }
+  .assess-more{
+    margin-top:36px;
     font-size:14.5px;
     font-style:italic;
-    color:#6b6255;
+    opacity:0.75;
   }
 </style>
 </head>
 <body>
-<div class="stage">
-  <p class="kicker">4624: Healing From Here</p>
-  <h1>Self-assessments</h1>
-  <p class="intro">A few short, honest mirrors — not diagnoses, not clinical tools. Just a way to check in with yourself, with a reflection after every answer and an episode pointed at wherever you land.</p>
 
-  <div class="cards">
-    <a class="card" href="quiz.html">
-      <p class="card-eyebrow">12 questions · ~5 minutes</p>
-      <p class="card-title">Where Are You in Your Healing?</p>
-      <p class="card-desc">A general check-in on how you carry your past — what you say out loud, what you keep quiet, and where you land between the two.</p>
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">
+      <img src="assets/img/logo.png" alt="4624: Healing From Here logo" />
+      <span class="word-text"><span class="big">4624</span><span class="small">HEALING FROM HERE</span></span>
     </a>
-    <a class="card" href="boundaries-forgiveness.html">
-      <p class="card-eyebrow">12 questions · ~5 minutes</p>
-      <p class="card-title">Boundaries &amp; Forgiveness</p>
-      <p class="card-desc">A closer look at how you protect your peace and whether forgiveness, for others or for yourself, feels within reach right now.</p>
-    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-right">
+      <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="blog.html">Blog</a>
+      <a href="assessments.html" aria-current="page">Quizzes</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <a href="https://youtube.com/@4624healingfromhere" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24"><path d="M12 4c-3 0-6.6.4-8 .8-.9.3-1.6 1-1.9 1.9C1.7 8.2 1.5 10 1.5 12s.2 3.8.6 5.3c.3.9 1 1.6 1.9 1.9 1.4.4 5 .8 8 .8s6.6-.4 8-.8c.9-.3 1.6-1 1.9-1.9.4-1.5.6-3.3.6-5.3s-.2-3.8-.6-5.3c-.3-.9-1-1.6-1.9-1.9C18.6 4.4 15 4 12 4zm-2.3 4.3 6 3.7-6 3.7V8.3z"/></svg></a>
+        <a href="https://open.spotify.com/show/4HexRxamC6nAOSQ8zYwWBA" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.4 14.5a.7.7 0 0 1-1 .2c-2.6-1.6-5.9-2-9.8-1.1a.7.7 0 1 1-.3-1.4c4.2-1 7.9-.5 10.8 1.3.4.2.5.7.3 1zm1.2-2.8a.9.9 0 0 1-1.2.3c-3-1.8-7.5-2.4-11-1.3a.9.9 0 1 1-.5-1.7c4-1.2 8.9-.6 12.4 1.5.4.3.5.9.3 1.2zm.1-2.9C14.3 8.7 8.9 8.5 5.7 9.5a1 1 0 1 1-.6-2C8.7 6.3 14.7 6.5 18.4 8.7a1 1 0 1 1-1 1.7z"/></svg></a>
+        <a href="https://fortysixtwentyfour.substack.com/" target="_blank" rel="noopener" aria-label="Substack" title="Substack"><svg viewBox="0 0 24 24"><path d="M4 4h16v2.5H4V4zm0 4.3h16V11H4V8.3zM4 20V12.7h16V20l-8-4.6L4 20z"/></svg></a>
+        <button id="nav-search-btn" aria-label="Search" title="Search"><svg viewBox="0 0 24 24"><path d="M10 4a6 6 0 1 0 3.8 10.6l4.8 4.8 1.4-1.4-4.8-4.8A6 6 0 0 0 10 4zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg></button>
+      </div>
+    </div>
   </div>
+</nav>
 
-  <p class="more-note">More assessments are on the way.</p>
+<div class="search-overlay" id="search-overlay">
+  <div class="wrap">
+    <button class="search-close" id="search-close" aria-label="Close search">&times;</button>
+    <div class="search-input-row">
+      <svg viewBox="0 0 24 24"><path d="M10 4a6 6 0 1 0 3.8 10.6l4.8 4.8 1.4-1.4-4.8-4.8A6 6 0 0 0 10 4zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></svg>
+      <input type="text" id="search-input" placeholder="Search episodes and posts..." autocomplete="off" />
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
 </div>
+
+<header class="page-header band-dark">
+  <img src="assets/img/leaf-insignia.png" alt="" class="leaf-bg" />
+  <div class="wrap" style="padding: clamp(56px, 9vw, 96px) 0;">
+    <p class="kicker">Self-Reflection Tools</p>
+    <img src="assets/img/leaf-insignia.png" alt="" class="leaf-divider" />
+    <h1>Quizzes</h1>
+    <p class="lede" style="margin-top:18px;">A few short, honest mirrors — not diagnoses, not clinical tools. Just a way to check in with yourself, with a reflection after every answer and an episode pointed at wherever you land.</p>
+  </div>
+</header>
+
+<section class="band-dark section-border">
+  <div class="wrap">
+    <div class="assess-grid">
+      <a class="assess-card" href="quiz.html">
+        <p class="eyebrow">12 questions · ~5 minutes</p>
+        <p class="title">Where Are You in Your Healing?</p>
+        <p class="desc">A general check-in on how you carry your past — what you say out loud, what you keep quiet, and where you land between the two.</p>
+      </a>
+      <a class="assess-card" href="boundaries-forgiveness.html">
+        <p class="eyebrow">12 questions · ~5 minutes</p>
+        <p class="title">Boundaries &amp; Forgiveness</p>
+        <p class="desc">A closer look at how you protect your peace and whether forgiveness, for others or for yourself, feels within reach right now.</p>
+      </a>
+    </div>
+    <p class="assess-more">More quizzes are on the way.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <span class="fine">&copy; <span id="year"></span> 4624: Healing From Here. Produced by PodLife Media.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="episodes.html">Episodes</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="platform-groups">
+      <div class="platform-group">
+        <h4>Watch &amp; Listen</h4>
+        <div class="platform-links">
+          <a href="https://youtube.com/@4624healingfromhere" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24"><path d="M12 4c-3 0-6.6.4-8 .8-.9.3-1.6 1-1.9 1.9C1.7 8.2 1.5 10 1.5 12s.2 3.8.6 5.3c.3.9 1 1.6 1.9 1.9 1.4.4 5 .8 8 .8s6.6-.4 8-.8c.9-.3 1.6-1 1.9-1.9.4-1.5.6-3.3.6-5.3s-.2-3.8-.6-5.3c-.3-.9-1-1.6-1.9-1.9C18.6 4.4 15 4 12 4zm-2.3 4.3 6 3.7-6 3.7V8.3z"/></svg></a>
+          <a href="https://open.spotify.com/show/4HexRxamC6nAOSQ8zYwWBA" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.4 14.5a.7.7 0 0 1-1 .2c-2.6-1.6-5.9-2-9.8-1.1a.7.7 0 1 1-.3-1.4c4.2-1 7.9-.5 10.8 1.3.4.2.5.7.3 1zm1.2-2.8a.9.9 0 0 1-1.2.3c-3-1.8-7.5-2.4-11-1.3a.9.9 0 1 1-.5-1.7c4-1.2 8.9-.6 12.4 1.5.4.3.5.9.3 1.2zm.1-2.9C14.3 8.7 8.9 8.5 5.7 9.5a1 1 0 1 1-.6-2C8.7 6.3 14.7 6.5 18.4 8.7a1 1 0 1 1-1 1.7z"/></svg></a>
+          <a href="https://fortysixtwentyfour.substack.com/" target="_blank" rel="noopener" aria-label="Substack" title="Substack"><svg viewBox="0 0 24 24"><path d="M4 4h16v2.5H4V4zm0 4.3h16V11H4V8.3zM4 20V12.7h16V20l-8-4.6L4 20z"/></svg></a>
+        </div>
+      </div>
+      <div class="platform-group">
+        <h4>Follow</h4>
+        <div class="platform-links">
+          <a href="https://www.facebook.com/profile.php?id=61594183318893" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.2-1.5 1.6-1.5H17V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.4H8v3.1h2.8v8h2.7z"/></svg></a>
+          <a href="https://www.tiktok.com/@4624healingfromhere" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><path d="M14.5 3h2.6c.3 1.6 1.4 2.9 3 3.3V9c-1.2 0-2.3-.4-3.2-1v6.4a5.3 5.3 0 1 1-5.3-5.3c.2 0 .4 0 .6.1v2.7a2.6 2.6 0 1 0 1.8 2.5V3z"/></svg></a>
+          <a href="https://instagram.com/4624healingfromhere" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8zm4 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.8 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
+          <a href="https://www.threads.net/@4624healingfromhere" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10c0-2.6-.9-4.7-2.5-6.2M15 9.5c-1-1-2.3-1.5-3.7-1.3-2 .3-3.3 2-3 4.2.3 2.4 2.3 4.6 5 4.3 2-.2 3.2-1.4 3.5-3-.2-2-1.7-3.3-3.7-3.3-1 0-1.8.3-2.3.9"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <img src="assets/img/leaf-insignia.png" alt="" class="footer-leaf" />
+  </div>
+</footer>
+
+<script src="js/episodes-data.js"></script>
+<script src="js/blog-data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
