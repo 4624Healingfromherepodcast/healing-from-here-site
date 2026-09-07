@@ -469,8 +469,8 @@ const results = {
       "That doesn't mean the old ground never shifts under you. It means you've got a practice for standing back up when it does."
     ],
     episodes: [
-      { title: "Ep. 14 — Are We Ever Truly Healed", url: "episodes.html#ep14" },
-      { title: "Ep. 12 — The Man Who Became My Father", url: "episodes.html#ep12" }
+      { title: "Ep. 14 — Are We Ever Truly Healed?", url: "https://www.youtube.com/watch?v=GplX6RnOlZI" },
+      { title: "Ep. 12 — The Man Who Became My Father", url: "https://www.youtube.com/watch?v=-ABbXVPorQo" }
     ]
   },
   Q: {
@@ -481,8 +481,8 @@ const results = {
       "There's no prize for opening the door before you're ready. But when you do peek behind it, you don't have to do it alone."
     ],
     episodes: [
-      { title: "Ep. 9 — Love and Trauma", url: "episodes.html#ep9" },
-      { title: "Ep. 8 — The Shreveport Episode", url: "episodes.html#ep8" }
+      { title: "Ep. 9 — Unhealed Trauma Will Destroy Your Relationship", url: "https://www.youtube.com/watch?v=8DL4MVZtdIU" },
+      { title: "Ep. 8 — The Shreveport Shooting: What the Community Needs Now", url: "https://www.youtube.com/watch?v=7oRdzSek_IQ" }
     ]
   },
   T: {
@@ -493,8 +493,8 @@ const results = {
       "That's not oversharing. That's what it looks like to stop carrying something in secret."
     ],
     episodes: [
-      { title: "Ep. 10 — The Cost of Telling the Truth", url: "episodes.html#ep10" },
-      { title: "Ep. 11 — Groomed for God", url: "episodes.html#ep11" }
+      { title: "Ep. 10 — The Cost of Telling the Truth About Your Family", url: "https://www.youtube.com/watch?v=0NxlpYRbZRk" },
+      { title: "Ep. 11 — Groomed For God", url: "https://www.youtube.com/watch?v=PpogQ8aqGug" }
     ]
   },
   A: {
@@ -505,8 +505,8 @@ const results = {
       "Healing, for you, might start with letting someone else hold the door for a change."
     ],
     episodes: [
-      { title: "Ep. 13 — Keeping Families Together", url: "episodes.html#ep13" },
-      { title: "Ep. 12 — The Man Who Became My Father", url: "episodes.html#ep12" }
+      { title: "Ep. 13 — Saving Kids In Crisis (Part 2)", url: "https://www.youtube.com/watch?v=AwB36ZgOZ_4" },
+      { title: "Ep. 12 — The Man Who Became My Father", url: "https://www.youtube.com/watch?v=-ABbXVPorQo" }
     ]
   }
 };
@@ -606,7 +606,7 @@ function showResult(){
   document.getElementById('result-title').textContent = r.title;
   document.getElementById('result-body').innerHTML = r.body.map(p => `<p>${p}</p>`).join('');
   document.getElementById('result-episodes').innerHTML = r.episodes.map(
-    e => `<a href="${e.url}">${e.title}</a>`
+    e => `<a href="${e.url}" target="_blank" rel="noopener">${e.title}</a>`
   ).join('');
 
   screenQuiz.classList.add('hidden');
