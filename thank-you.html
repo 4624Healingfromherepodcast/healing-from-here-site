@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Episodes — 4624: Healing From Here</title>
+<title>Message Sent — 4624: Healing From Here</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Allura&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="episodes.html" aria-current="page">Episodes</a>
+      <a href="episodes.html">Episodes</a>
       <a href="blog.html">Blog</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -30,19 +30,16 @@
 
 <header class="page-header band-dark">
   <img src="assets/img/leaf-insignia.png" alt="" class="leaf-bg" />
-  <div class="wrap" style="padding: clamp(56px, 9vw, 96px) 0;">
-    <p class="kicker">The Archive</p>
-    <img src="assets/img/leaf-insignia.png" alt="" class="leaf-divider" />
-    <h1>Every Episode, in One Place.</h1>
-    <p class="lede" style="margin-top:18px;">Watch on the site, or pick up wherever you already listen — YouTube, Spotify, or Substack. New conversations every other Saturday at 1pm.</p>
+  <div class="wrap" style="padding: clamp(64px, 10vw, 110px) 0; text-align:center;">
+    <img src="assets/img/leaf-insignia.png" alt="" class="leaf-divider center" />
+    <h1>Message Sent.</h1>
+    <p class="lede" style="margin: 18px auto 0; max-width:52ch;">Thank you for reaching out to 4624: Healing From Here. Your message has landed in our inbox, and we'll get back to you as soon as we can.</p>
+    <div style="margin-top:36px;">
+      <a class="btn btn-primary" href="index.html">Back to Home</a>
+      <a class="btn btn-outline" href="episodes.html" style="margin-left:14px;">Explore Episodes</a>
+    </div>
   </div>
 </header>
-
-<section class="band-cream">
-  <div class="wrap">
-    <div class="grid" id="all-episodes"></div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
@@ -79,11 +76,7 @@
   </div>
 </footer>
 
-<script src="js/episodes-data.js"></script>
 <script src="js/main.js"></script>
-<script>
-  renderEpisodes("all-episodes", EPISODES);
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
