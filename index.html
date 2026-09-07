@@ -100,7 +100,7 @@
           </span>
           <span>Hear the Intro</span>
         </button>
-        <audio id="intro-audio" src="assets/audio/4624-intro-clip.mp3" preload="none"></audio>
+        <audio id="intro-audio" src="assets/audio/4624-intro-clip.mp3" preload="auto"></audio>
       </div>
       <div class="quote-block">
         <div class="rule"></div>
@@ -226,8 +226,14 @@
     var audio = document.getElementById('intro-audio');
     var icon = document.getElementById('intro-audio-icon');
     var label = btn.querySelector('span:last-child');
+    var hasPlayed = false;
     var playIcon = '<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
     var pauseIcon = '<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
+
+    function restingLabel(){
+      return hasPlayed ? 'Replay the Intro' : 'Hear the Intro';
+    }
+
     btn.addEventListener('click', function(){
       if (audio.paused){
         audio.play();
@@ -236,13 +242,30 @@
       } else {
         audio.pause();
         icon.innerHTML = playIcon;
-        label.textContent = 'Hear the Intro';
+        label.textContent = restingLabel();
       }
+    });
+    audio.addEventListener('play', function(){
+      hasPlayed = true;
+      icon.innerHTML = pauseIcon;
+      label.textContent = 'Pause';
     });
     audio.addEventListener('ended', function(){
       icon.innerHTML = playIcon;
-      label.textContent = 'Hear the Intro';
+      label.textContent = restingLabel();
     });
+
+    // Attempt autoplay on load. Most browsers block audio with sound
+    // unless the user has interacted with the page first — if it's
+    // blocked, this fails silently and the button just sits ready.
+    var autoplayAttempt = audio.play();
+    if (autoplayAttempt !== undefined){
+      autoplayAttempt.catch(function(){
+        // Autoplay blocked — leave the button in its normal resting state.
+        icon.innerHTML = playIcon;
+        label.textContent = restingLabel();
+      });
+    }
   })();
 </script>
 </body>
