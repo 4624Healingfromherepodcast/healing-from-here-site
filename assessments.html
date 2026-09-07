@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Assessments — 4624: Healing From Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EDE8DA;
+    --ink:#1C1712;
+    --terracotta:#B35D34;
+    --gold:#D4AF37;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Lora', Georgia, serif;
+    min-height:100vh;
+    padding:56px 20px;
+    line-height:1.55;
+  }
+  .stage{ max-width:720px; margin:0 auto; }
+  .kicker{ font-family:'Lora', serif; font-style:italic; font-size:17px; color:var(--terracotta); margin:0 0 14px; }
+  h1{
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 6vw, 44px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+  }
+  .intro{ font-size:17px; max-width:52ch; color:#3a342c; margin:0 0 44px; }
+
+  .cards{ display:flex; flex-direction:column; gap:18px; }
+  .card{
+    display:block;
+    background:var(--white);
+    border-left:4px solid var(--terracotta);
+    padding:28px 30px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color 0.15s ease;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .card:hover{ border-left-color:var(--gold); }
+  }
+  .card:focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+  .card-eyebrow{
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--terracotta);
+    margin:0 0 10px;
+  }
+  .card-title{
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:24px;
+    margin:0 0 12px;
+    line-height:1.25;
+  }
+  .card-desc{ font-size:15.5px; color:#3a342c; margin:0; max-width:50ch; }
+
+  .more-note{
+    margin-top:44px;
+    font-size:14.5px;
+    font-style:italic;
+    color:#6b6255;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <p class="kicker">4624: Healing From Here</p>
+  <h1>Self-assessments</h1>
+  <p class="intro">A few short, honest mirrors — not diagnoses, not clinical tools. Just a way to check in with yourself, with a reflection after every answer and an episode pointed at wherever you land.</p>
+
+  <div class="cards">
+    <a class="card" href="quiz.html">
+      <p class="card-eyebrow">12 questions · ~5 minutes</p>
+      <p class="card-title">Where Are You in Your Healing?</p>
+      <p class="card-desc">A general check-in on how you carry your past — what you say out loud, what you keep quiet, and where you land between the two.</p>
+    </a>
+    <a class="card" href="boundaries-forgiveness.html">
+      <p class="card-eyebrow">12 questions · ~5 minutes</p>
+      <p class="card-title">Boundaries &amp; Forgiveness</p>
+      <p class="card-desc">A closer look at how you protect your peace and whether forgiveness, for others or for yourself, feels within reach right now.</p>
+    </a>
+  </div>
+
+  <p class="more-note">More assessments are on the way.</p>
+</div>
+</body>
+</html>

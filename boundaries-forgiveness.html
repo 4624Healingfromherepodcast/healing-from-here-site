@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boundaries & Forgiveness — 4624: Healing From Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EDE8DA;
+    --ink:#1C1712;
+    --terracotta:#B35D34;
+    --gold:#D4AF37;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Lora', Georgia, serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 16px;
+    line-height:1.55;
+  }
+  button{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+  .stage{ width:100%; max-width:600px; }
+  .opening{ text-align:left; }
+  .opening .kicker{
+    font-family:'Lora', serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--terracotta);
+    margin:0 0 14px;
+  }
+  h1{
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 6vw, 44px);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+  }
+  .opening p{
+    font-size:17px;
+    max-width:46ch;
+    color:#3a342c;
+    margin:0 0 28px;
+  }
+  .start-btn, .continue-btn{
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    background:var(--terracotta);
+    color:var(--white);
+    border:none;
+    padding:16px 30px;
+    border-radius:2px;
+    cursor:pointer;
+    letter-spacing:0.01em;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .start-btn:hover, .continue-btn:hover{ background:#9a4d29; }
+  }
+  .start-btn:active, .continue-btn:active{ background:#9a4d29; }
+  .start-btn:focus-visible, button:focus-visible, a:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:2px;
+  }
+  .fine{ margin-top:26px; font-size:13.5px; color:#6b6255; max-width:44ch; }
+
+  .card{ background:var(--white); padding:40px 34px; border-left:4px solid var(--terracotta); }
+  .progress-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:22px; }
+  .progress-label{ font-family:'Lora', serif; font-style:italic; font-size:14px; color:#6b6255; }
+  .progress-track{ background:#e4ddcd; height:3px; width:100%; margin-bottom:30px; }
+  .progress-fill{ background:var(--gold); height:3px; transition:width 0.35s ease; }
+  .question{ font-family:'Montserrat', sans-serif; font-weight:800; font-size:23px; line-height:1.3; margin:0 0 26px; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .option{
+    text-align:left; background:var(--cream); border:1px solid #e4ddcd; border-radius:2px;
+    padding:15px 18px; font-family:'Lora', serif; font-size:16px; color:var(--ink);
+    cursor:pointer; transition:border-color 0.15s ease, background 0.15s ease;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .option:hover{ border-color:var(--terracotta); background:#fff; }
+  }
+  .option.selected{ background:var(--white); border-color:var(--terracotta); border-width:2px; padding:14px 17px; }
+  .option:disabled{ cursor:default; }
+  .option:disabled:not(.selected){ opacity:0.45; }
+
+  .explain-box{ margin-top:24px; padding:20px 22px; background:var(--cream); border-left:4px solid var(--gold); }
+  .explain-box p{ margin:0; font-size:15.5px; color:#3a342c; font-style:italic; }
+
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; margin-top:30px; }
+  .back-link{
+    font-family:'Lora', serif; font-style:italic; font-size:14px; color:#6b6255;
+    background:none; border:none; cursor:pointer; padding:6px 0;
+  }
+  .back-link:disabled{ visibility:hidden; }
+
+  .result-eyebrow{ font-family:'Lora', serif; font-style:italic; color:var(--terracotta); font-size:16px; margin:0 0 8px; }
+  .result-title{ font-family:'Montserrat', sans-serif; font-weight:800; font-size:clamp(26px,5.5vw,36px); margin:0 0 18px; line-height:1.15; }
+  .result-body p{ font-size:16.5px; color:#3a342c; margin:0 0 16px; }
+  .rec-box{ margin-top:26px; padding:22px 24px; background:var(--cream); border-left:4px solid var(--gold); }
+  .rec-box .rec-label{ font-family:'Montserrat', sans-serif; font-weight:700; font-size:13px; letter-spacing:0.02em; color:var(--terracotta); margin:0 0 10px; }
+  .rec-box a{
+    font-family:'Lora', serif; font-size:16px; color:var(--ink); display:block; margin-bottom:6px;
+    text-decoration:none; border-bottom:1px solid var(--terracotta); padding-bottom:1px;
+  }
+  @media (hover:hover) and (pointer:fine){ .rec-box a:hover{ color:var(--terracotta); } }
+
+  .retake{
+    margin-top:28px; font-family:'Lora', serif; font-style:italic; font-size:14px; color:#6b6255;
+    background:none; border:none; cursor:pointer; padding:0; text-decoration:underline;
+  }
+  .back-to-hub{
+    display:inline-block; margin-top:14px; font-family:'Lora', serif; font-style:italic; font-size:14px;
+    color:#6b6255; text-decoration:underline;
+  }
+  .resources-link{
+    display:inline-block; margin-top:10px; font-family:'Montserrat', sans-serif; font-weight:700;
+    font-size:14px; color:var(--terracotta); text-decoration:none; border-bottom:1px solid var(--terracotta);
+    padding-bottom:1px;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .resources-link:hover{ color:#8f4a29; }
+  }
+
+  .hidden{ display:none !important; }
+  @media (prefers-reduced-motion: reduce){ .progress-fill{ transition:none; } }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <section id="screen-opening" class="opening">
+    <p class="kicker">4624: Healing From Here</p>
+    <h1>Boundaries &amp; forgiveness</h1>
+    <p>Twelve short questions about where you stand with the people who've hurt you — and the walls you've built since. A reflection follows each answer. At the end, we'll point you to the episode closest to where you are.</p>
+    <button class="start-btn" id="start-btn">Begin</button>
+    <p class="fine">This reflects on patterns, not clinical symptoms, and isn't a substitute for therapy or professional care. If you're in crisis, please reach out to a licensed provider or a crisis line in your area.</p>
+  </section>
+
+  <section id="screen-quiz" class="card hidden">
+    <div class="progress-row"><span class="progress-label" id="progress-label">Question 1 of 12</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:8.3%"></div></div>
+    <p class="question" id="question-text"></p>
+    <div class="options" id="options-container"></div>
+    <div id="explain-container"></div>
+    <div class="nav-row">
+      <button class="back-link" id="back-btn">← Back</button>
+      <button class="continue-btn hidden" id="continue-btn">Continue</button>
+    </div>
+  </section>
+
+  <section id="screen-result" class="card hidden">
+    <p class="result-eyebrow" id="result-eyebrow"></p>
+    <p class="result-title" id="result-title"></p>
+    <div class="result-body" id="result-body"></div>
+    <div class="rec-box">
+      <p class="rec-label">An episode for where you are</p>
+      <div id="result-episodes"></div>
+    </div>
+    <div>
+      <button class="retake" id="retake-btn">Take it again</button><br>
+      <a class="back-to-hub" href="assessments.html">← Back to all self-assessments</a><br>
+      <a class="resources-link" href="resources.html">Looking for support? See our resource directory →</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// F = Fortress (over-guarded), G = Open Gate (under-boundaried), A = Architect (deliberate/healthy), S = Slow Burn (still processing)
+const questions = [
+  {
+    q: "When someone crosses a line with you, you usually…",
+    options: [
+      { text: "Cut them off cleanly, no explanation owed", type: "F",
+        explain: "A clean cutoff protects you fast. It's worth checking whether it's protecting you from the right things, or from all closeness." },
+      { text: "Let it go and hope it doesn't happen again", type: "G",
+        explain: "Hoping instead of asking often means the line gets crossed again. Your peace is allowed to come with a request attached." },
+      { text: "Name the line clearly and say what happens if it's crossed again", type: "A",
+        explain: "Naming the line and the consequence in the same breath is what a healthy boundary actually sounds like." },
+      { text: "Feel the anger for a while before you can even respond", type: "S",
+        explain: "Needing time before you can respond isn't failure — it's your system catching up to what happened." }
+    ]
+  },
+  {
+    q: "Saying \"no\" to someone you love feels…",
+    options: [
+      { text: "Uncomfortable but automatic — you've built the habit", type: "A",
+        explain: "Discomfort that doesn't stop you anymore is what a practiced boundary looks like." },
+      { text: "Almost impossible — you'd rather absorb it", type: "G",
+        explain: "Absorbing instead of saying no protects the relationship in the short term and costs you in the long one." },
+      { text: "Easy, maybe too easy — you say no before you even weigh it", type: "F",
+        explain: "A fast no can be armor. It's worth asking whether it's protecting you or just keeping everyone at a safe distance." },
+      { text: "Tangled up with guilt about your own history", type: "S",
+        explain: "Guilt about saying no often traces back to somewhere specific. That's worth sitting with, not silencing." }
+    ]
+  },
+  {
+    q: "When you think about forgiving someone who hurt you deeply, you feel…",
+    options: [
+      { text: "Like you already have, and it's real", type: "A",
+        explain: "Forgiveness that's already landed, and stayed landed, is one of the harder things a person can do." },
+      { text: "Like forgiveness would mean pretending it didn't happen", type: "F",
+        explain: "Forgiveness and forgetting aren't the same thing. You're allowed to forgive and still remember exactly what happened." },
+      { text: "Like you forgave a long time ago, maybe before you were ready", type: "G",
+        explain: "Fast forgiveness, offered before you'd processed the hurt, sometimes has to be revisited later — and that's allowed." },
+      { text: "Like you're working on it, and it's slow", type: "S",
+        explain: "Slow forgiveness is still forgiveness in progress. There's no clock on it." }
+    ]
+  },
+  {
+    q: "A family member apologizes for something old and painful. You…",
+    options: [
+      { text: "Accept it, and mean it, without re-litigating the past", type: "A",
+        explain: "Being able to receive an apology cleanly, without reopening every detail, usually means you did that work already." },
+      { text: "Say it's fine before you've actually decided if it is", type: "G",
+        explain: "Saying it's fine to keep the peace, before you've checked in with yourself, is a habit worth noticing." },
+      { text: "Accept the words but keep your guard exactly where it was", type: "F",
+        explain: "An apology doesn't have to instantly lower your guard. Trust can be rebuilt slower than words are said." },
+      { text: "Feel the old hurt rise up before you can even respond", type: "S",
+        explain: "An old wound resurfacing at the apology isn't a step backward — it's the wound finally getting acknowledged." }
+    ]
+  },
+  {
+    q: "Your general approach to letting new people get close is…",
+    options: [
+      { text: "Careful but not closed — you let people in at a pace that feels right", type: "A",
+        explain: "A deliberate pace, instead of all-or-nothing, is what a well-built boundary actually looks like day to day." },
+      { text: "Fast — you tend to trust people before they've earned it", type: "G",
+        explain: "Trusting quickly can come from a good place, but it's worth checking whether it's earned or just hoped for." },
+      { text: "Slow to the point that most people give up trying", type: "F",
+        explain: "A wall that keeps everyone out protects you from harm, but it also keeps out the people who wouldn't have hurt you." },
+      { text: "Inconsistent — it depends on how safe you feel that week", type: "S",
+        explain: "Inconsistency here often just means you're still calibrating what safe actually feels like. That's normal." }
+    ]
+  },
+  {
+    q: "When you think about the person who hurt you most, your first feeling is…",
+    options: [
+      { text: "Mostly neutral now — it doesn't run your day anymore", type: "A",
+        explain: "Neutrality, where there used to be a charge, is one of the clearest signs healing has actually taken hold." },
+      { text: "A quick urge to make sure everyone's okay, including them", type: "G",
+        explain: "Worrying about their comfort before your own, even now, is a pattern worth watching for." },
+      { text: "Distance — you've built a wall and it's holding", type: "F",
+        explain: "A wall that's holding is doing its job. Just check periodically whether it still needs to be that tall." },
+      { text: "Anger that surprises you with how present it still is", type: "S",
+        explain: "Anger that hasn't faded yet isn't a sign you're doing it wrong. It's a sign the wound was real." }
+    ]
+  },
+  {
+    q: "When you disappoint someone by holding a boundary, you…",
+    options: [
+      { text: "Feel the discomfort and hold the boundary anyway", type: "A",
+        explain: "Feeling bad and holding firm anyway is what makes a boundary real instead of just a threat." },
+      { text: "Usually cave and remove the boundary to fix their mood", type: "G",
+        explain: "Removing the boundary to manage someone else's reaction teaches both of you that it was never firm to begin with." },
+      { text: "Don't feel much — you expected the disappointment and you're fine with it", type: "F",
+        explain: "Being unbothered by someone's disappointment can be real peace, or it can be distance doing its job. Worth telling the difference apart." },
+      { text: "Spiral into guilt for a while afterward", type: "S",
+        explain: "Guilt after holding a boundary usually fades with practice. It doesn't mean the boundary was wrong." }
+    ]
+  },
+  {
+    q: "You define forgiveness as…",
+    options: [
+      { text: "Releasing the grip it has on you, regardless of what they do", type: "A",
+        explain: "Defining forgiveness as something you do for yourself, independent of the other person, is a mature and freeing frame." },
+      { text: "Something you owe people, whether or not they've earned it", type: "G",
+        explain: "Forgiveness offered as an obligation, rather than a choice, tends to run out before it's real." },
+      { text: "Something that has to be earned back, slowly", type: "F",
+        explain: "Requiring it to be earned is a valid stance. Just make sure the bar is reachable, not just a formality." },
+      { text: "Something you want, but haven't fully gotten to yet", type: "S",
+        explain: "Wanting it and being there yet are two different places, and it's honest to admit which one you're actually in." }
+    ]
+  },
+  {
+    q: "When you set a boundary and someone pushes back, you…",
+    options: [
+      { text: "Restate it calmly, without needing to justify it further", type: "A",
+        explain: "Not over-explaining a boundary under pressure is a sign it's genuinely settled in you." },
+      { text: "Start explaining, then apologizing, then bending", type: "G",
+        explain: "The slide from explaining to apologizing to bending is a familiar pattern — and one you can interrupt earlier each time." },
+      { text: "Shut the conversation down entirely", type: "F",
+        explain: "Shutting it down fully protects the boundary, but it can also close the door on a conversation that might've gone okay." },
+      { text: "Feel shaken for a while after, even if you held firm", type: "S",
+        explain: "Feeling shaken afterward doesn't undo the fact that you held the line. Both things can be true." }
+    ]
+  },
+  {
+    q: "Self-forgiveness, for things you did or didn't do, feels…",
+    options: [
+      { text: "Achievable — you've made peace with your own past decisions", type: "A",
+        explain: "Making peace with your own choices is often the harder half of this work — and you've clearly started it." },
+      { text: "Easy to extend, maybe faster than you'd give anyone else", type: "G",
+        explain: "Letting yourself off the hook quickly can be healthy self-compassion, or it can be avoidance. Worth checking which." },
+      { text: "Nearly out of reach", type: "F",
+        explain: "Being harder on yourself than the situation warrants is common, and it's a boundary you're allowed to set with your own inner voice too." },
+      { text: "Something you're circling, but not there yet", type: "S",
+        explain: "Circling it counts as progress. You don't have to land on it today." }
+    ]
+  },
+  {
+    q: "You'd describe your relationship to old resentment as…",
+    options: [
+      { text: "Mostly resolved — you can think about it without it hijacking you", type: "A",
+        explain: "Being able to think about it without being hijacked by it is the practical definition of resolved." },
+      { text: "Something you push down so it doesn't affect other people", type: "G",
+        explain: "Pushing it down to protect others often means it comes out sideways somewhere else. It deserves a direct outlet." },
+      { text: "Sealed off — you don't go there anymore", type: "F",
+        explain: "Sealing it off can be a form of self-protection, especially if going there used to cost you a lot." },
+      { text: "Still simmering under the surface", type: "S",
+        explain: "Simmering resentment is still active work, even if it doesn't look like progress from the outside." }
+    ]
+  },
+  {
+    q: "If you could tell the person who hurt you one honest thing right now, it would be…",
+    options: [
+      { text: "\"I'm at peace with this now, and here's what I learned.\"", type: "A",
+        explain: "Being able to name what you learned, not just what happened, is a marker of real integration." },
+      { text: "\"It's okay, I understand why you did it.\"", type: "G",
+        explain: "Understanding someone's reasons and excusing the impact are two different things — it's worth keeping them separate." },
+      { text: "\"You don't get to be close to me again.\"", type: "F",
+        explain: "That's a clear, valid boundary. It doesn't have to soften to be legitimate." },
+      { text: "\"I'm still not sure how I feel about you.\"", type: "S",
+        explain: "Not being sure yet is an honest answer, and probably the truest one you could give right now." }
+    ]
+  }
+];
+
+const results = {
+  A: {
+    eyebrow: "Your reflection",
+    title: "The Architect",
+    body: [
+      "You've stopped treating boundaries as walls or apologies as automatic passes. You're building something more deliberate — lines you can hold, forgiveness you can mean, at a pace that's actually yours.",
+      "That doesn't mean it's finished. It means you've got a blueprint, and you're not afraid to revise it."
+    ],
+    episodes: [
+      { title: "Ep. 14 — Are We Ever Truly Healed?", url: "https://www.youtube.com/watch?v=GplX6RnOlZI" },
+      { title: "Ep. 12 — The Man Who Became My Father", url: "https://www.youtube.com/watch?v=-ABbXVPorQo" }
+    ]
+  },
+  G: {
+    eyebrow: "Your reflection",
+    title: "The Open Gate",
+    body: [
+      "You extend trust and forgiveness fast — often before you've had time to check whether it's earned or whether you've actually processed the hurt. That generosity is real, but it can leave you unprotected.",
+      "A boundary isn't the opposite of love. It's what makes your love sustainable."
+    ],
+    episodes: [
+      { title: "Ep. 10 — The Cost of Telling the Truth About Your Family", url: "https://www.youtube.com/watch?v=0NxlpYRbZRk" },
+      { title: "Ep. 13 — Saving Kids In Crisis (Part 2)", url: "https://www.youtube.com/watch?v=AwB36ZgOZ_4" }
+    ]
+  },
+  F: {
+    eyebrow: "Your reflection",
+    title: "The Fortress",
+    body: [
+      "Your walls work. They keep out the people who'd hurt you again — and, sometimes, the people who wouldn't. That's not a flaw, it's a system that made sense when you built it.",
+      "The question worth sitting with isn't whether to tear the walls down. It's whether every gate still needs to be locked."
+    ],
+    episodes: [
+      { title: "Ep. 9 — Unhealed Trauma Will Destroy Your Relationship", url: "https://www.youtube.com/watch?v=8DL4MVZtdIU" },
+      { title: "Ep. 11 — Groomed For God", url: "https://www.youtube.com/watch?v=PpogQ8aqGug" }
+    ]
+  },
+  S: {
+    eyebrow: "Your reflection",
+    title: "The Slow Burn",
+    body: [
+      "You're not avoiding this work — you're in the middle of it. The anger, the guilt, the resurfacing hurt: none of that means you're stuck. It means you're still processing something real, honestly, without rushing it for anyone's comfort.",
+      "Forgiveness on a deadline usually isn't forgiveness at all. Yours is allowed to take the time it takes."
+    ],
+    episodes: [
+      { title: "Ep. 8 — The Shreveport Shooting: What the Community Needs Now", url: "https://www.youtube.com/watch?v=7oRdzSek_IQ" },
+      { title: "Ep. 10 — The Cost of Telling the Truth About Your Family", url: "https://www.youtube.com/watch?v=0NxlpYRbZRk" }
+    ]
+  }
+};
+
+let current = 0;
+let answers = [];
+
+const screenOpening = document.getElementById('screen-opening');
+const screenQuiz = document.getElementById('screen-quiz');
+const screenResult = document.getElementById('screen-result');
+const startBtn = document.getElementById('start-btn');
+const backBtn = document.getElementById('back-btn');
+const continueBtn = document.getElementById('continue-btn');
+const retakeBtn = document.getElementById('retake-btn');
+
+startBtn.addEventListener('click', () => {
+  screenOpening.classList.add('hidden');
+  screenQuiz.classList.remove('hidden');
+  renderQuestion();
+});
+
+retakeBtn.addEventListener('click', () => {
+  current = 0;
+  answers = [];
+  screenResult.classList.add('hidden');
+  screenQuiz.classList.remove('hidden');
+  renderQuestion();
+});
+
+backBtn.addEventListener('click', () => {
+  if (current > 0){ current--; answers.pop(); renderQuestion(); }
+});
+
+continueBtn.addEventListener('click', () => {
+  if (current < questions.length - 1){ current++; renderQuestion(); }
+  else { showResult(); }
+});
+
+function renderQuestion(){
+  const q = questions[current];
+  document.getElementById('progress-label').textContent = `Question ${current+1} of ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${((current+1)/questions.length)*100}%`;
+  document.getElementById('question-text').textContent = q.q;
+  backBtn.disabled = current === 0;
+  continueBtn.classList.add('hidden');
+  document.getElementById('explain-container').innerHTML = '';
+
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt.text;
+    btn.addEventListener('click', () => selectAnswer(idx));
+    container.appendChild(btn);
+  });
+}
+
+function selectAnswer(idx){
+  const q = questions[current];
+  answers[current] = q.options[idx].type;
+
+  const optionButtons = document.querySelectorAll('#options-container .option');
+  optionButtons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === idx) btn.classList.add('selected');
+  });
+  if (document.activeElement) document.activeElement.blur();
+
+  document.getElementById('explain-container').innerHTML =
+    `<div class="explain-box"><p>${q.options[idx].explain}</p></div>`;
+
+  continueBtn.textContent = current < questions.length - 1 ? 'Continue' : 'See your reflection';
+  continueBtn.classList.remove('hidden');
+}
+
+function showResult(){
+  const tally = { A:0, G:0, F:0, S:0 };
+  answers.forEach(a => tally[a]++);
+  let winner = 'A';
+  let max = -1;
+  Object.keys(tally).forEach(k => { if (tally[k] > max){ max = tally[k]; winner = k; } });
+
+  const r = results[winner];
+  document.getElementById('result-eyebrow').textContent = r.eyebrow;
+  document.getElementById('result-title').textContent = r.title;
+  document.getElementById('result-body').innerHTML = r.body.map(p => `<p>${p}</p>`).join('');
+  document.getElementById('result-episodes').innerHTML = r.episodes.map(
+    e => `<a href="${e.url}" target="_blank" rel="noopener">${e.title}</a>`
+  ).join('');
+
+  screenQuiz.classList.add('hidden');
+  screenResult.classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>

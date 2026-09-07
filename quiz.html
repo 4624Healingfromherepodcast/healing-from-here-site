@@ -250,6 +250,19 @@
     text-decoration:underline;
   }
 
+  .back-to-hub{
+    display:inline-block; margin-top:14px; font-family:'Lora', serif; font-style:italic; font-size:14px;
+    color:#6b6255; text-decoration:underline;
+  }
+  .resources-link{
+    display:inline-block; margin-top:10px; font-family:'Montserrat', sans-serif; font-weight:700;
+    font-size:14px; color:var(--terracotta); text-decoration:none; border-bottom:1px solid var(--terracotta);
+    padding-bottom:1px;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .resources-link:hover{ color:#8f4a29; }
+  }
+
   .hidden{ display:none !important; }
 
   @media (prefers-reduced-motion: reduce){
@@ -294,7 +307,11 @@
       <p class="rec-label">An episode for where you are</p>
       <div id="result-episodes"></div>
     </div>
-    <button class="retake" id="retake-btn">Take it again</button>
+    <div>
+      <button class="retake" id="retake-btn">Take it again</button><br>
+      <a class="back-to-hub" href="assessments.html">← Back to all self-assessments</a><br>
+      <a class="resources-link" href="resources.html">Looking for support? See our resource directory →</a>
+    </div>
   </section>
 
 </div>
