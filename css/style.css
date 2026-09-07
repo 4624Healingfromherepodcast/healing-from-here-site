@@ -224,8 +224,9 @@ body.search-locked { overflow: hidden; }
   max-width: 30ch; padding-top: 4px;
 }
 .quote-wrap { display: flex; flex-direction: column; }
-.quote-line { width: 60px; height: 1px; background: var(--gold); margin-top: 16px; }
+.quote-line { width: 40px; height: 1px; background: var(--white); margin-top: 16px; }
 .hero .lockup { flex: 1; }
+.hero-cinematic .lockup { flex: 1; }
 .kicker {
   font-family: var(--display); font-weight: 700; color: var(--gold-bright);
   font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px;
@@ -233,6 +234,9 @@ body.search-locked { overflow: hidden; }
 .hero .logo-lockup { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
 .hero .logo-lockup img { height: 74px; width: 74px; }
 .hero h1 { margin-bottom: 22px; }
+.hero-cinematic .logo-lockup { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
+.hero-cinematic .logo-lockup img { height: 74px; width: 74px; object-fit: contain; }
+.hero-cinematic h1 { margin-bottom: 22px; }
 .hero-actions { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
 
 /* Homepage cinematic hero with studio photograph */
@@ -259,7 +263,7 @@ body.search-locked { overflow: hidden; }
   padding: clamp(64px, 11vw, 130px) 0 clamp(56px, 9vw, 110px);
 }
 .hero-cinematic .lockup { max-width: 620px; }
-.hero-cinematic .quote-block { display: flex; gap: 18px; max-width: 320px; padding-top: 10px; flex-shrink: 0; }
+.hero-cinematic .quote-block { display: flex; gap: 18px; max-width: 320px; padding-top: 10px; flex-shrink: 0; align-self: center; margin-top: 60px; }
 .hero-cinematic .quote-block .rule { background: var(--gold); }
 
 @media (max-width: 900px) {
