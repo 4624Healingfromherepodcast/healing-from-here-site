@@ -1,6 +1,5 @@
 # 4624: Healing From Here — Website
 
-
 A static site (no build step, no server required). Works on GoDaddy's
 own hosting or any host that serves plain files.
 
