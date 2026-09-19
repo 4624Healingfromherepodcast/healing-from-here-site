@@ -11,6 +11,14 @@
    ========================================================================== */
 
 const POSTS = [
+     {
+    slug: "episode-15-name-the-trigger",
+    title: "Name the Trigger Before It Names You",
+    excerpt:
+      "On triggers, generational pain, and the boundaries that protect your peace without requiring resentment.",
+    date: "",
+    tag: "Episode 15",
+  },
   {
     slug: "episode-14-are-we-ever-truly-healed",
     title: "Are We Ever Truly Healed?",
