@@ -8,6 +8,15 @@
    ========================================================================== */
 
 const EPISODES = [
+     {
+    number: 15,
+    title: "How Do You Maneuver Around People Who Aren't Healing?",
+    guest: "",
+    description:
+      "Ed and Michelle get raw about triggers, childhood trauma, and boundaries — tracing their reactions back to childhood and landing on a truth that reframes the whole episode: healing is never a one-time event, even for two people who talk about it professionally.",
+    youtubeId: "tCJXKZB_uk4",
+    date: "",
+  },
   {
     number: 14,
     title: "Are We Ever Truly Healed?",
