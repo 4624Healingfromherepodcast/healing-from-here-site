@@ -8,7 +8,16 @@
    ========================================================================== */
 
 const EPISODES = [
-     {
+  {
+    number: 16,
+    title: "He's Still My Dad!",
+    guest: "",
+    description:
+      "Ed and Michelle sit down for the rawest conversation of their lives — two siblings who knew completely different versions of the same father, one who told her she could do anything and one whose abuse put him in foster care for eight years. Same man. Both true.",
+    youtubeId: "xLZjZptK5KI",
+    date: "",
+  },
+  {
     number: 15,
     title: "How Do You Maneuver Around People Who Aren't Healing?",
     guest: "",
@@ -40,7 +49,7 @@ const EPISODES = [
     title: "The Man Who Became My Father: How One Mentor Changed My Life",
     guest: "Dr. Phillip J. Mobley",
     description:
-      "Part 1: Dr. Phillip \u201cPops\u201d Mobley Sr. on the mentorship that began with a simple \u201chow are you doing?\u201d in 1988 and grew into a lifelong bond.",
+      "Part 1: Dr. Phillip “Pops” Mobley Sr. on the mentorship that began with a simple “how are you doing?” in 1988 and grew into a lifelong bond.",
     youtubeId: "-ABbXVPorQo",
     date: "",
   },
@@ -64,10 +73,10 @@ const EPISODES = [
   },
   {
     number: 9,
-    title: "Unhealed Trauma Will Destroy Your Relationship \u2014 Here's the Truth (Stay OR Leave!)",
+    title: "Unhealed Trauma Will Destroy Your Relationship — Here's the Truth (Stay OR Leave!)",
     guest: "",
     description:
-      "Sparked by Taraji P. Henson's comments on dating unhealed partners, Ed and Michelle ask when unhealed trauma means it's time to stay \u2014 or leave.",
+      "Sparked by Taraji P. Henson's comments on dating unhealed partners, Ed and Michelle ask when unhealed trauma means it's time to stay — or leave.",
     youtubeId: "8DL4MVZtdIU",
     date: "",
   },
@@ -82,7 +91,7 @@ const EPISODES = [
   },
   {
     number: 7,
-    title: "The Child Inside You Is Making Adult Decisions \u2014 Here's How to Stop It!",
+    title: "The Child Inside You Is Making Adult Decisions — Here's How to Stop It!",
     guest: "Dr. Yvette Mignon",
     description:
       "Part 2 with Dr. Yvette Mignon digs into the inner child as emotional memory, and how it quietly drives adult reactions and relationships.",
@@ -94,7 +103,7 @@ const EPISODES = [
     title: "Did You Know That Childhood Survival Habits Are Secretly Destroying Your Adult Relationships?",
     guest: "Dr. Yvette Mignon",
     description:
-      "Physician Dr. Yvette Mignon joins Ed and Michelle to unpack how the survival habits built in childhood shape \u2014 and sabotage \u2014 adult relationships.",
+      "Physician Dr. Yvette Mignon joins Ed and Michelle to unpack how the survival habits built in childhood shape — and sabotage — adult relationships.",
     youtubeId: "dUmjR76RHT0",
     date: "",
   },
@@ -112,7 +121,7 @@ const EPISODES = [
     title: "Navigating Trauma Recovery: Why Healing Begins With YOU!",
     guest: "",
     description:
-      "Ed and Michelle nearly walk away from the project entirely before confronting what it costs to be the \u201cfirst partaker\u201d of your own healing.",
+      "Ed and Michelle nearly walk away from the project entirely before confronting what it costs to be the “first partaker” of your own healing.",
     youtubeId: "HgDYZCtLIPI",
     date: "",
   },
