@@ -9,6 +9,15 @@
 
 const EPISODES = [
   {
+    number: 17,
+    title: "Aged Out, Not Counted Out",
+    guest: "",
+    description:
+      "Ed opens up about entering foster care at 10, moving through 12 homes, and aging out at 18 with nowhere to come home to \u2014 and the life he built anyway: 35 years married, a family of his own, and a message for every kid still in the system.",
+    youtubeId: "WDNLLLeXpsI",
+    date: "",
+  },
+  {
     number: 16,
     title: "He's Still My Dad!",
     guest: "",

@@ -12,6 +12,14 @@
 
 const POSTS = [
   {
+    slug: "episode-17-aged-out-not-counted-out",
+    title: "The Birthday That Changes Everything",
+    excerpt:
+      "For a young person in foster care, turning 18 can mean packing everything into a plastic bag and walking out the door with no address waiting on the other side.",
+    date: "",
+    tag: "Episode 17",
+  },
+  {
     slug: "episode-16-hes-still-my-dad",
     title: "When “He's Still My Dad” Means Two Different Things",
     excerpt:
